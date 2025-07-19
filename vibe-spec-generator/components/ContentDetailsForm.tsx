@@ -8,6 +8,22 @@ interface ContentDetailsFormProps {
   onPrev: () => void;
 }
 
+const copywritingOptions = [
+  { id: 'casual', name: '親しみやすい・カジュアル', description: 'フレンドリーな話し言葉調' },
+  { id: 'professional', name: '専門的・信頼感重視', description: '丁寧な敬語調' },
+  { id: 'motivational', name: '情熱的・モチベーショナル', description: '熱意のある語り口調' },
+  { id: 'minimal', name: 'シンプル・ミニマル', description: '簡潔で要点のみ' },
+  { id: 'story', name: 'ストーリー重視', description: '体験談や事例を交えた展開' }
+];
+
+const visualDirectionOptions = [
+  { id: 'photo', name: '写真メイン', description: 'リアルな人物や風景写真' },
+  { id: 'illustration', name: 'イラストメイン', description: '親しみやすいイラスト' },
+  { id: 'icon', name: 'アイコン・図解メイン', description: '分かりやすい図解' },
+  { id: 'minimal', name: 'ミニマル', description: '必要最小限のビジュアル' },
+  { id: 'infographic', name: 'インフォグラフィック', description: 'データや情報を視覚化' }
+];
+
 const pageOptions = {
   lp: [
     { id: 'hero', name: 'ヒーローセクション', description: 'メインビジュアルとキャッチコピー' },
@@ -88,31 +104,61 @@ export default function ContentDetailsForm({ data, updateData, onNext, onPrev }:
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            コピーライティングの要望
-          </label>
-          <textarea
-            required
-            value={data.copywriting}
-            onChange={(e) => updateData({ copywriting: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            rows={3}
-            placeholder="例：感情に訴える文章、専門的で信頼感のある文章、親しみやすくシンプルな表現"
-          />
+          <h3 className="text-lg font-semibold mb-4 text-gray-700">コピーライティングの方向性</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {copywritingOptions.map((option) => (
+              <label
+                key={option.id}
+                className={`flex items-start p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                  data.copywriting === option.id
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-gray-300 hover:border-gray-400'
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="copywriting"
+                  value={option.id}
+                  checked={data.copywriting === option.id}
+                  onChange={(e) => updateData({ copywriting: e.target.value })}
+                  className="mt-1 mr-3"
+                />
+                <div>
+                  <div className="font-semibold">{option.name}</div>
+                  <div className="text-sm text-gray-600">{option.description}</div>
+                </div>
+              </label>
+            ))}
+          </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            画像・ビジュアルの方向性
-          </label>
-          <input
-            type="text"
-            required
-            value={data.images}
-            onChange={(e) => updateData({ images: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="例：実写の人物写真を使用、イラストメイン、ミニマルなアイコン"
-          />
+          <h3 className="text-lg font-semibold mb-4 text-gray-700">画像・ビジュアルの方向性</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {visualDirectionOptions.map((option) => (
+              <label
+                key={option.id}
+                className={`flex items-start p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                  data.images === option.id
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-gray-300 hover:border-gray-400'
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="images"
+                  value={option.id}
+                  checked={data.images === option.id}
+                  onChange={(e) => updateData({ images: e.target.value })}
+                  className="mt-1 mr-3"
+                />
+                <div>
+                  <div className="font-semibold">{option.name}</div>
+                  <div className="text-sm text-gray-600">{option.description}</div>
+                </div>
+              </label>
+            ))}
+          </div>
         </div>
 
         <div>

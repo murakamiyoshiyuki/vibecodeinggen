@@ -56,6 +56,39 @@ const colorSchemes = [
   { id: 'warm', name: '暖色系', colors: ['#F59E0B', '#FB923C', '#FED7AA'] }
 ];
 
+const siteTones = [
+  { 
+    id: 'professional', 
+    name: 'プロフェッショナル・洗練された', 
+    description: '高級感・信頼感',
+    icon: '🏢'
+  },
+  { 
+    id: 'friendly', 
+    name: 'フレンドリー・親しみやすい', 
+    description: '温かみ・アットホーム',
+    icon: '😊'
+  },
+  { 
+    id: 'modern', 
+    name: 'モダン・先進的', 
+    description: '革新的・最先端',
+    icon: '✨'
+  },
+  { 
+    id: 'energetic', 
+    name: 'エネルギッシュ・活発', 
+    description: '躍動感・情熱的',
+    icon: '🔥'
+  },
+  { 
+    id: 'calm', 
+    name: '落ち着いた・誠実', 
+    description: '安心感・堅実',
+    icon: '🌿'
+  }
+];
+
 export default function DesignSelection({ data, updateData, onNext, onPrev }: DesignSelectionProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,6 +150,32 @@ export default function DesignSelection({ data, updateData, onNext, onPrev }: De
             ))}
           </div>
         </div>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-4 text-gray-700">サイトのトーン・雰囲気</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {siteTones.map((tone) => (
+              <button
+                key={tone.id}
+                type="button"
+                onClick={() => updateData({ tone: tone.id })}
+                className={`p-4 rounded-lg border-2 transition-all text-left ${
+                  data.tone === tone.id
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-gray-300 hover:border-gray-400'
+                }`}
+              >
+                <div className="flex items-start">
+                  <div className="text-2xl mr-3">{tone.icon}</div>
+                  <div>
+                    <div className="font-semibold">{tone.name}</div>
+                    <div className="text-sm text-gray-600 mt-1">{tone.description}</div>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="mt-8 flex justify-between">
@@ -130,7 +189,7 @@ export default function DesignSelection({ data, updateData, onNext, onPrev }: De
         </button>
         <button
           type="submit"
-          disabled={!data.designStyle || !data.colorScheme}
+          disabled={!data.designStyle || !data.colorScheme || !data.tone}
           className="flex items-center space-x-2 bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
         >
           <span>次へ進む</span>
