@@ -11,7 +11,9 @@ interface FeatureSelectionProps {
 const features = {
   basic: [
     { id: 'responsive', name: 'レスポンシブ対応', description: 'スマホ・タブレット対応' },
-    { id: 'seo', name: 'SEO対策', description: '検索エンジン最適化' },
+    { id: 'seo-basic', name: '基本的な検索エンジン対策（SEO対策）', description: 'Googleなどで見つかりやすくする基本設定' },
+    { id: 'seo-title', name: 'ページタイトルの最適化（SEO対策）', description: '検索結果に表示される見出しを効果的に設定' },
+    { id: 'seo-meta', name: '説明文の最適化（SEO対策）', description: '検索結果に表示される説明文を魅力的に設定' },
     { id: 'analytics', name: 'アクセス解析', description: 'Google Analytics設置' },
     { id: 'contact', name: 'お問い合わせフォーム', description: 'メール送信機能付き' },
   ],
@@ -32,6 +34,9 @@ const features = {
     { id: 'reservation', name: '予約システム', description: 'カレンダー予約' },
     { id: 'multilang', name: '多言語対応', description: '複数言語切り替え' },
     { id: 'api', name: '外部API連携', description: '他サービスとの連携' },
+    { id: 'llm-chatbot', name: 'AI対話システム（LLM対策）', description: 'ChatGPTのような自動応答機能' },
+    { id: 'llm-content', name: 'AI用コンテンツ最適化（LLM対策）', description: 'AIが理解しやすい情報構造にする' },
+    { id: 'llm-structured', name: '構造化データ対応（LLM対策）', description: 'AIが情報を読み取りやすくする設定' },
   ]
 };
 
